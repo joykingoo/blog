@@ -17,7 +17,7 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SUBJECT_PREFIX = 'Pitch'
-    SENDER_EMAIL = 'wendokingoo@gmail.com'
+    # SENDER_EMAIL = 'wendokingoo@gmail.com'
 
 
 class ProdConfig(Config):
