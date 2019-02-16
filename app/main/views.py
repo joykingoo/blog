@@ -1,7 +1,7 @@
 from flask import render_template, request, redirect, url_for, abort
 from . import main
-from ..models import User, Pitch,Feedback
-from .forms import PitchForm,FeedbackForm,UpdateProfile
+from ..models import User, Posts
+from .forms import PostsForm,UpdateProfile
 from .. import db,photos
 from flask_login import login_user, logout_user, login_required, current_user
 import datetime
@@ -9,16 +9,16 @@ import datetime
 
 posts = [
     {
-        'author': 'Corey Schafer',
-        'title': 'Blog Post 1',
+        'author': 'Joy K',
+        'title': 'My First Blogpost',
         'content': 'First post content',
-        'date_posted': 'April 20, 2018'
+        'date_posted': 'February 16, 2019'
     },
     {
-        'author': 'Jane Doe',
-        'title': 'Blog Post 2',
+        'author': 'Abigael M',
+        'title': 'All about Fashion',
         'content': 'Second post content',
-        'date_posted': 'April 21, 2018'
+        'date_posted': 'February 18, 2019'
     }
 ]
 
@@ -27,14 +27,14 @@ posts = [
 @main.route('/')
 def index():
 
-    all=Pitch.query.all()
+    posters=Posts.query.all()
     '''
     View root page function that returns the index page and its data
     '''
     title = 'Home - Welcome to Pitch'
 
-    form = PitchForm()
-    return render_template('index.html',form = form,title=title, all=all,posts=posts)
+    form = Post()
+    return render_template('index.html',form = form,title=title, posters=posters,posts=posts)
     
 
 # @main.route('/new_pitch', methods = ['GET','POST'])

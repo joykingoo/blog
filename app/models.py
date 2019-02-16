@@ -18,14 +18,14 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer,primary_key = True)
     username = db.Column(db.String(255))
     email = db.Column(db.String(255),unique = True,index = True)
-    pass_secure = db.Column(db.String(255))
+    pass_secure = db.Column(db.String(255),unique =True, nullable=False)
     password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(255)) 
-    profile_pic_path = db.Column(db.String())
+    profile_pic_path = db.Column(db.String(),nullable='False', default='default.jpg')
 
     photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
-    feedback = db.relationship('Feedback',backref = 'user',lazy = "dynamic")
-    pitch = db.relationship('Pitch',backref = 'user',lazy = "dynamic")
+    # feedback = db.relationship('Feedback',backref = 'user',lazy = "dynamic")
+    posts = db.relationship('Posts',backref = 'author',lazy = "select")
 
     @property
     def password(self):
@@ -47,19 +47,20 @@ class User(UserMixin,db.Model):
     def __repr__(self):
         return f'User {self.username}'
 
-# class Pitch(UserMixin,db.Model):
+class Posts(UserMixin,db.Model):
 
-#     __tablename__ = 'pitch'
-#     id = db.Column(db.Integer,primary_key = True)
-#     title = db.Column(db.String(255))
-#     content = db.Column(db.String(255))
-#     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
+    __tablename__ = 'posts'
+    id = db.Column(db.Integer,primary_key = True)
+    title = db.Column(db.String(255), nullable=False)
+    date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    content = db.Column(db.String(255), nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable=False)
    
-#     def save_pitch(self):
-#         db.session.add(self)
-#         db.session.commit()
-#     def __repr__(self):
-#         return f'Pitch {self.content}'
+    def save_posts(self):
+        db.session.add(self)
+        db.session.commit()
+    def __repr__(self):
+        return f"Posts ('{self.title} ,{self.date_posted}')"
 
 # class Feedback(UserMixin,db.Model):
 
