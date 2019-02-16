@@ -32,8 +32,15 @@
                       </div>
                       <!-- Navbar Right Side -->
                       <div class="navbar-nav">
-                        <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
-                        <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                        {% if current_user.is_authenticated %}
+                        <a class="nav-item nav-link"href="/">Home</a>
+                        <a class="nav-item nav-link"href="{{url_for('main.profile',uname=current_user.username)}}">Profile</a>
+                        <!-- <a href="/new_p"> NEW PITCH</a></li> -->
+                        <!-- <a href="/new_feedback"> NEW FEEDBACK</a></li> -->
+                        <a class="nav-item nav-link"href="{{url_for('auth.logout')}}">Logout</a>
+                        {% else %}
+                        <a href="{{url_for('auth.login')}}">Login</a>
+                        {%endif%}
                       </div>
                     </div>
                   </div>

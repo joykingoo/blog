@@ -1,4 +1,5 @@
 {% extends "layout.html" %}
+{% block title %} Joys Blog{% endblock %}
 {% block content %}
     {% for post in posts %}
         <article class="media content-section">
@@ -12,4 +13,6 @@
           </div>
         </article>
     {% endfor %}
+
+    
 {% endblock content %}

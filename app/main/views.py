@@ -33,8 +33,8 @@ def index():
     '''
     title = 'Home - Welcome to Pitch'
 
-    form = Post()
-    return render_template('index.html',form = form,title=title, posters=posters,posts=posts)
+    form = PostsForm()
+    return render_template('index.html',form = form,title=title, posters=posters)
     
 
 # @main.route('/new_pitch', methods = ['GET','POST'])
