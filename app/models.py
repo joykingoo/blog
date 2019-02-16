@@ -21,7 +21,7 @@ class User(UserMixin,db.Model):
     pass_secure = db.Column(db.String(255),unique =True, nullable=False)
     password_hash = db.Column(db.String(255))
     bio = db.Column(db.String(255)) 
-    profile_pic_path = db.Column(db.String(),nullable='False', default='default.jpg')
+    profile_pic_path = db.Column(db.String(),nullable='False', default='default.png')
 
     photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
     # feedback = db.relationship('Feedback',backref = 'user',lazy = "dynamic")
