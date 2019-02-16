@@ -37,9 +37,9 @@ def index():
     return render_template('index.html',form = form,title=title, posters=posters)
     
 
-# @main.route('/new_pitch', methods = ['GET','POST'])
+# @main.route('/new_post', methods = ['GET','POST'])
 # @login_required
-# def new_pitch():
+# def new_post():
 #     form = PitchForm()
 
 #     if form.validate_on_submit():
