@@ -1,12 +1,13 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField,TextAreaField,SubmitField,ValidationError
 from wtforms.validators import Required,Email
+
 # from .models import User
 
 class PostsForm(FlaskForm):
-    title = StringField('Post Title', validators=[Required()])
-    post = TextAreaField('Add Post',validators=[Required()])
-    submit = SubmitField('Submit')
+    title = StringField('Title', validators=[Required()])
+    content= TextAreaField('Content',validators=[Required()])
+    submit = SubmitField('Post')
 
 
 # class CommentForm(FlaskForm):
@@ -24,15 +25,6 @@ class PostsForm(FlaskForm):
 #     feedback = TextAreaField('Add feedback', validators=[Required()])
 
 #     submit = SubmitField('Submit')
-
-@main.route('/user/<uname>')
-def profile(uname):
-    user = User.query.filter_by(username = uname).first()
-
-    if user is None:
-        abort(404)
-
-    return render_template("profile/profile.html", user = user)
 
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])

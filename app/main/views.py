@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for, abort
+from flask import render_template, request, redirect, url_for, abort, flash
 from . import main
 from ..models import User, Posts
 from .forms import PostsForm,UpdateProfile
@@ -37,18 +37,19 @@ def index():
     return render_template('index.html',form = form,title=title, posters=posters)
     
 
-# @main.route('/new_post', methods = ['GET','POST'])
+@main.route('/new_post', methods = ['GET','POST'])
 # @login_required
-# def new_post():
-#     form = PitchForm()
+def new_post():
+    form = PostsForm()
 
-#     if form.validate_on_submit():
-#         title = form.title.data
-#         content = form.pitch.data
-#         add_pitch = Pitch(title=title,content=content)
-#         add_pitch.save_pitch()
-#         return redirect(url_for('main.index'))
-#     return render_template('new_pitch.html',form=form)
+    if form.validate_on_submit():
+        title = form.title.data
+        content = form.post.data
+        add_post = Posts(title=title,content=content)
+        add_post.save_post()
+        flash("Your post has been created!" ,"success")
+        return redirect(url_for('main.index'))
+    return render_template('new_post.html',form=form)
 
 @main.route('/user/<uname>')
 def profile(uname):
