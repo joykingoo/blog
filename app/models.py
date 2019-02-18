@@ -54,7 +54,7 @@ class Posts(UserMixin,db.Model):
     title = db.Column(db.String(255), nullable=False)
     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     content = db.Column(db.String(255), nullable=False)
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"), nullable=False)
+    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
    
     def save_posts(self):
         db.session.add(self)
