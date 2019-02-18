@@ -10,21 +10,17 @@ class PostsForm(FlaskForm):
     submit = SubmitField('Post')
 
 
-# class CommentForm(FlaskForm):
+class CommentForm(FlaskForm):
 
-#     title = StringField('Review title',validators=[Required()])
-#     comment = TextAreaField('Pitch review', validators=[Required()])
-#     submit = SubmitField('Submit')
+   body = TextAreaField('comment', validators=[Required()])
+   author = TextAreaField('By', validators=[Required()])
+   submit = SubmitField('Submit')
 
+class SubscribeForm(FlaskForm):
+   name = StringField("Your Name")
+   email = StringField("Email")
+   submit= SubmitField('Subscribe')
 
-
-# class FeedbackForm(FlaskForm):
-
-#     title = StringField('Feedback title',validators=[Required()])
-
-#     feedback = TextAreaField('Add feedback', validators=[Required()])
-
-#     submit = SubmitField('Submit')
 
 class UpdateProfile(FlaskForm):
     bio = TextAreaField('Tell us about you.',validators = [Required()])

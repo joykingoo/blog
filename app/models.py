@@ -24,8 +24,8 @@ class User(UserMixin,db.Model):
     profile_pic_path = db.Column(db.String(),nullable='False', default='default.png')
 
     photos = db.relationship('PhotoProfile',backref = 'user',lazy = "dynamic")
-    # feedback = db.relationship('Feedback',backref = 'user',lazy = "dynamic")
-    posts = db.relationship('Posts',backref = 'author',lazy = "select")
+    
+    posts = db.relationship('Posts',backref = 'author',lazy=True)
 
     @property
     def password(self):
@@ -45,7 +45,7 @@ class User(UserMixin,db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'User {self.username}'
+        return f'User { self.username }'
 
 class Posts(UserMixin,db.Model):
 
@@ -59,28 +59,11 @@ class Posts(UserMixin,db.Model):
     def save_posts(self):
         db.session.add(self)
         db.session.commit()
+
     def __repr__(self):
         return f"Posts ('{self.title} ,{self.date_posted}')"
 
-# class Feedback(UserMixin,db.Model):
 
-#     __tablename__ = 'feedback'
-
-#     id = db.Column(db.Integer,primary_key = True)
-#     image_path = db.Column(db.String)
-#     posted = db.Column(db.DateTime,default=datetime.utcnow)
-#     user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-    
-
-#     def save_feedback(self):
-#         db.session.add(self)
-#         db.session.commit()
-
-#     @classmethod
-#     def get_feedback(cls,id):
-
-#         feedback = Feedback.query.filter_by(feedback_id=id).all()
-#         return feedback
 
 
 class PhotoProfile(db.Model):

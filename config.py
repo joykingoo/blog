@@ -8,7 +8,7 @@ class Config:
     
     
     SECRET_KEY ='joy'
-    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://joy:joy@localhost/posts'
+    SQLALCHEMY_DATABASE_URI = 'postgresql+psycopg2://joy:joy@localhost/blog'
 
     UPLOADED_PHOTOS_DEST = 'app/static/photos'
     #  email configurations
@@ -18,7 +18,7 @@ class Config:
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
     SUBJECT_PREFIX = 'Joy Blog'
-    # SENDER_EMAIL = testj006@gmail.com'
+    # SENDER_EMAIL = testj006@gmail.com
 
 
 class ProdConfig(Config):
