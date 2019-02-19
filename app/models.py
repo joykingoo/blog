@@ -45,7 +45,9 @@ class User(UserMixin,db.Model):
         db.session.commit()
 
     def __repr__(self):
-        return f'User { self.username }'
+        return f"User('{self.username}')"
+         
+
 
 class Posts(UserMixin,db.Model):
 
